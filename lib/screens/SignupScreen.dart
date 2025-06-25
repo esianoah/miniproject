@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miniproject/screens/SigninScreen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -15,7 +16,10 @@ class SignUpScreen extends StatelessWidget {
                 constraints: BoxConstraints(minHeight: constraints.maxHeight),
                 child: IntrinsicHeight(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 32,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -32,7 +36,10 @@ class SignUpScreen extends StatelessWidget {
                         const SizedBox(height: 16),
                         const Text(
                           "Welcome to your Menstrual Health Journey",
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         const SizedBox(height: 24),
 
@@ -45,7 +52,9 @@ class SignUpScreen extends StatelessWidget {
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.pinkAccent),
+                              borderSide: const BorderSide(
+                                color: Colors.pinkAccent,
+                              ),
                             ),
                           ),
                         ),
@@ -59,7 +68,9 @@ class SignUpScreen extends StatelessWidget {
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.pinkAccent),
+                              borderSide: const BorderSide(
+                                color: Colors.pinkAccent,
+                              ),
                             ),
                           ),
                         ),
@@ -75,7 +86,9 @@ class SignUpScreen extends StatelessWidget {
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.pinkAccent),
+                              borderSide: const BorderSide(
+                                color: Colors.pinkAccent,
+                              ),
                             ),
                           ),
                         ),
@@ -91,7 +104,9 @@ class SignUpScreen extends StatelessWidget {
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.pinkAccent),
+                              borderSide: const BorderSide(
+                                color: Colors.pinkAccent,
+                              ),
                             ),
                           ),
                         ),
@@ -122,28 +137,32 @@ class SignUpScreen extends StatelessWidget {
                             ),
                             child: const Text(
                               "Sign In",
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(height: 24),
 
                         // Third-party buttons
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: _buildSocialButton("Log In with Apple", Icons.apple, Colors.black87),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: _buildSocialButton("Log In with Google", Icons.g_mobiledata, Colors.orange),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        _buildSocialButton("Log In with Facebook", Icons.facebook, Colors.blue),
-                        const SizedBox(height: 20),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //   children: [
+                        //     Expanded(
+                        //       child: _buildSocialButton("Log In with Apple", Icons.apple, Colors.black87),
+                        //     ),
+                        //     const SizedBox(width: 12),
+                        //     Expanded(
+                        //       child: _buildSocialButton("Log In with Google", Icons.g_mobiledata, Colors.orange),
+                        //     ),
+                        //   ],
+                        // ),
+                        // const SizedBox(height: 12),
+                        // _buildSocialButton("Log In with Facebook", Icons.facebook, Colors.blue),
+                        // const SizedBox(height: 20),
 
                         // Sign Up
                         Row(
@@ -151,7 +170,14 @@ class SignUpScreen extends StatelessWidget {
                           children: [
                             const Text("Don’t have an account?"),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => SignInScreen(),
+                                  ),
+                                );
+                              },
                               child: const Text("Sign up"),
                             ),
                           ],
@@ -172,12 +198,13 @@ class SignUpScreen extends StatelessWidget {
     return OutlinedButton.icon(
       onPressed: () {},
       icon: Icon(icon, color: color),
-      label: Text(label, style: const TextStyle(color: Colors.black87, fontSize: 12)),
+      label: Text(
+        label,
+        style: const TextStyle(color: Colors.black87, fontSize: 12),
+      ),
       style: OutlinedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         side: BorderSide(color: color.withOpacity(0.3)),
         backgroundColor: Colors.white,
       ),

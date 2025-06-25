@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miniproject/screens/SignupScreen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -15,7 +16,10 @@ class SignInScreen extends StatelessWidget {
                 constraints: BoxConstraints(minHeight: constraints.maxHeight),
                 child: IntrinsicHeight(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 32,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -37,7 +41,10 @@ class SignInScreen extends StatelessWidget {
                         const SizedBox(height: 16),
                         const Text(
                           "Welcome back!",
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         const SizedBox(height: 24),
 
@@ -50,7 +57,9 @@ class SignInScreen extends StatelessWidget {
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.pinkAccent),
+                              borderSide: const BorderSide(
+                                color: Colors.pinkAccent,
+                              ),
                             ),
                           ),
                         ),
@@ -66,7 +75,9 @@ class SignInScreen extends StatelessWidget {
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.pinkAccent),
+                              borderSide: const BorderSide(
+                                color: Colors.pinkAccent,
+                              ),
                             ),
                           ),
                         ),
@@ -97,28 +108,32 @@ class SignInScreen extends StatelessWidget {
                             ),
                             child: const Text(
                               "Sign In",
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(height: 24),
 
-                        // Third-party buttons
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: _buildSocialButton("Log In with Apple", Icons.apple, Colors.black87),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: _buildSocialButton("Log In with Google", Icons.g_mobiledata, Colors.orange),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        _buildSocialButton("Log In with Facebook", Icons.facebook, Colors.blue),
-                        const SizedBox(height: 20),
+                        // // Third-party buttons
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //   children: [
+                        //     Expanded(
+                        //       child: _buildSocialButton("Log In with Apple", Icons.apple, Colors.black87),
+                        //     ),
+                        //     const SizedBox(width: 12),
+                        //     Expanded(
+                        //       child: _buildSocialButton("Log In with Google", Icons.g_mobiledata, Colors.orange),
+                        //     ),
+                        //   ],
+                        // ),
+                        // const SizedBox(height: 12),
+                        // _buildSocialButton("Log In with Facebook", Icons.facebook, Colors.blue),
+                        // const SizedBox(height: 20),
 
                         // Sign Up
                         Row(
@@ -126,7 +141,14 @@ class SignInScreen extends StatelessWidget {
                           children: [
                             const Text("Don’t have an account?"),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => SignUpScreen(),
+                                  ),
+                                );
+                              },
                               child: const Text("Sign up"),
                             ),
                           ],
@@ -147,12 +169,13 @@ class SignInScreen extends StatelessWidget {
     return OutlinedButton.icon(
       onPressed: () {},
       icon: Icon(icon, color: color),
-      label: Text(label, style: const TextStyle(color: Colors.black87, fontSize: 12)),
+      label: Text(
+        label,
+        style: const TextStyle(color: Colors.black87, fontSize: 12),
+      ),
       style: OutlinedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         side: BorderSide(color: color.withOpacity(0.3)),
         backgroundColor: Colors.white,
       ),
