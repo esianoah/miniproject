@@ -1,5 +1,9 @@
+// lib/screens/login_screen.dart
 import 'package:flutter/material.dart';
-import 'package:miniproject/screens/SignupScreen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:miniproject/screens/HomeScreen.dart';
+import 'package:miniproject/screens/SignupScreen.dart'; // For social media icons
+ // Assuming HomeScreen is where you navigate after login
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -7,177 +11,215 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF0F5),
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                child: IntrinsicHeight(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 32,
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 80), // Adjust spacing from top as needed
+              // Image of woman
+              CircleAvatar(
+                radius: 80, // Adjust size as needed
+                backgroundColor: Colors.grey[200], // Placeholder background
+                backgroundImage: const NetworkImage(
+                    'https://via.placeholder.com/150/F8BBD0/000000?text=Woman'), // Replace with actual image URL
+              ),
+              const SizedBox(height: 40),
+
+              Text(
+                'Welcome back!', //
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 16),
-                        const Text(
-                          "Welcome to your cycle companion",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        const CircleAvatar(
-                          radius: 60,
-                          backgroundImage: AssetImage(""),
-                        ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          "Welcome back!",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 24),
+              ),
+              const SizedBox(height: 30),
 
-                        // Username field
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: "Username",
-                            prefixIcon: const Icon(Icons.person_outline),
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Colors.pinkAccent,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
+              // Username Text Field
+              _buildTextField(
+                hintText: 'Username', //
+                icon: Icons.person_outline, //
+              ),
+              const SizedBox(height: 20),
 
-                        // Password field
-                        TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: "Password",
-                            prefixIcon: const Icon(Icons.lock_outline),
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Colors.pinkAccent,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
+              // Password Text Field
+              _buildTextField(
+                hintText: 'Password', //
+                icon: Icons.lock_outline, //
+                isPassword: true,
+              ),
+              const SizedBox(height: 10),
 
-                        // Forgot password
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () {},
-                            child: const Text("Forgot Password?"),
-                          ),
-                        ),
-
-                        const SizedBox(height: 8),
-
-                        // Sign In Button
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.pinkAccent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              padding: const EdgeInsets.symmetric(vertical: 14),
-                            ),
-                            child: const Text(
-                              "Sign In",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-
-                        // // Third-party buttons
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        //   children: [
-                        //     Expanded(
-                        //       child: _buildSocialButton("Log In with Apple", Icons.apple, Colors.black87),
-                        //     ),
-                        //     const SizedBox(width: 12),
-                        //     Expanded(
-                        //       child: _buildSocialButton("Log In with Google", Icons.g_mobiledata, Colors.orange),
-                        //     ),
-                        //   ],
-                        // ),
-                        // const SizedBox(height: 12),
-                        // _buildSocialButton("Log In with Facebook", Icons.facebook, Colors.blue),
-                        // const SizedBox(height: 20),
-
-                        // Sign Up
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("Don’t have an account?"),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => SignUpScreen(),
-                                  ),
-                                );
-                              },
-                              child: const Text("Sign up"),
-                            ),
-                          ],
-                        ),
-                      ],
+              // Forgot Password?
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    print('Forgot Password tapped');
+                  },
+                  child: Text(
+                    'Forgot Password?', //
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                      fontSize: 14,
                     ),
                   ),
                 ),
               ),
-            );
-          },
+              const SizedBox(height: 10),
+
+              // Log In Button
+              SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Navigate to HomeScreen after successful login
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
+                    print('Log In tapped');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.pink, // Pink color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20), // Rounded corners
+                    ),
+                    elevation: 0,
+                  ),
+                  child: const Text(
+                    'Log In', //
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+
+              // Don't have an account? Sign up
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Don't have an account? ", //
+                    style: TextStyle(color: Colors.grey[700]),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      print('Sign up tapped');
+                      // You might navigate to a registration screen here
+                                          Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const SignUpScreen(),
+                      ),
+                    );
+                    },
+                    child: const Text(
+                      'Sign up', //
+                      style: TextStyle(
+                        color: Color(0xFFF672B1), // Pink color
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+
+              // Social Logins
+              _buildSocialLoginButton(
+                text: 'Log In with Google', //
+                icon: FontAwesomeIcons.google, // Using Font Awesome for Google icon
+                backgroundColor: const Color(0xFFFCE8F1), // Light pink
+                textColor: Colors.black,
+                iconColor: Colors.red, // Google's brand color
+                onPressed: () {
+                  print('Log In with Google tapped');
+                },
+              ),
+              const SizedBox(height: 15),
+
+              _buildSocialLoginButton(
+                text: 'Log In with Facebook', //
+                icon: FontAwesomeIcons.facebookF, // Using Font Awesome for Facebook icon
+                backgroundColor: const Color(0xFF3B5998), // Facebook blue
+                textColor: Colors.white,
+                iconColor: Colors.white,
+                onPressed: () {
+                  print('Log In with Facebook tapped');
+                },
+              ),
+              const SizedBox(height: 40),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildSocialButton(String label, IconData icon, Color color) {
-    return OutlinedButton.icon(
-      onPressed: () {},
-      icon: Icon(icon, color: color),
-      label: Text(
-        label,
-        style: const TextStyle(color: Colors.black87, fontSize: 12),
+  // Helper widget for text fields
+  Widget _buildTextField({
+    required String hintText,
+    required IconData icon,
+    bool isPassword = false,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20), // Rounded corners
+        border: Border.all(color: Colors.grey[300]!, width: 1.5), // Light border
       ),
-      style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        side: BorderSide(color: color.withOpacity(0.3)),
-        backgroundColor: Colors.white,
+      child: TextField(
+        obscureText: isPassword,
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: TextStyle(color: Colors.grey[500]),
+          prefixIcon: Icon(icon, color: Colors.grey[700]), //
+          border: InputBorder.none, // Remove default border
+          contentPadding: const EdgeInsets.symmetric(vertical: 15),
+        ),
+        style: const TextStyle(fontSize: 16),
+      ),
+    );
+  }
+
+  // Helper widget for social login buttons
+  Widget _buildSocialLoginButton({
+    required String text,
+    required IconData icon,
+    required Color backgroundColor,
+    required Color textColor,
+    required Color iconColor,
+    required VoidCallback onPressed,
+  }) {
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: ElevatedButton.icon(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor, //
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20), //
+          ),
+          elevation: 0,
+        ),
+        icon: FaIcon(icon, color: iconColor, size: 20), // Using FontAwesomeIcons
+        label: Text(
+          text,
+          style: TextStyle(
+            color: textColor,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }
